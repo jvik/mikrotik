@@ -1,5 +1,6 @@
 ### Declare date - Get global date from Set_date.txt
 :global date
+:put $date
 
 ### Set local variables. Change the value between "" to reflect your environment. Do not delete quotation marks.
 :local ftpserver ""
