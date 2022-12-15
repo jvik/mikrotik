@@ -1,0 +1,55 @@
+:global date;
+:set date ([:pick [/system clock get date] ([:find [/system clock get date] "/" ([:find [/system clock get date] "/" ] +1)] + 1) ([:find [/system clock get date] "/" ([:find [/system clock get date] "/" ] +1)] + 5)]);
+:if ("jan"=[:pick [/system clock get date] 0 [:find [/system clock get date] "/"]]) do={
+  :set date ($date."-01-"); 
+} else={
+  :if ("feb"=[:pick [/system clock get date] 0 [:find [/system clock get date] "/"]]) do={
+    :set date ($date."-02-"); 
+  } else={
+    :if ("mar"=[:pick [/system clock get date] 0 [:find [/system clock get date] "/"]]) do={
+      :set date ($date."-03-");
+    } else={
+      :if ("apr"=[:pick [/system clock get date] 0 [:find [/system clock get date] "/"]]) do={
+        :set date ($date."-04-");
+      } else={
+        :if ("may"=[:pick [/system clock get date] 0 [:find [/system clock get date] "/"]]) do={
+          :set date ($date."-05-");
+        } else={
+          :if ("jun"=[:pick [/system clock get date] 0 [:find [/system clock get date] "/"]]) do={
+            :set date ($date."-06-");
+          } else= {
+            :if ("jul"=[:pick [/system clock get date] 0 [:find [/system clock get date] "/"]]) do={
+              :set date ($date."-07-");
+            } else={
+              :if ("aug"=[:pick [/system clock get date] 0 [:find [/system clock get date] "/"]]) do={
+                :set date ($date."-08-");
+              } else={
+                :if ("sep"=[:pick [/system clock get date] 0 [:find [/system clock get date] "/"]]) do={
+                  :set date ($date."-09-");
+                } else={
+                  :if ("oct"=[:pick [/system clock get date] 0 [:find [/system clock get date] "/"]]) do={
+                    :set date ($date."-10-");
+                  } else={
+                    :if ("nov"=[:pick [/system clock get date] 0 [:find [/system clock get date] "/"]]) do={
+                      :set date ($date."-11-");
+                    } else={
+                      :if ("dec"=[:pick [/system clock get date] 0 [:find [/system clock get date] "/"]]) do={
+                        :set date ($date."-12-");
+                      } else={
+                        :set date ($date."-".([:pick [/system clock get date] 0 [:find [/system clock get date] "/"]])."-");
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        } 
+      }
+    }
+  } 
+}
+:set date ($date.[:pick [/system clock get date] ([:find [/system clock get date] "/"] + 1) [:find [/system clock get date] "/" ([:find [/system clock get date] "/" ] +1)]]);
+# jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec
+
+:put $date
