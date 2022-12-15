@@ -4,6 +4,7 @@
 
 ### Set local variables. Change the value between "" to reflect your environment. Do not delete quotation marks.
 :local ftpserver ""
+:local ftppath ""
 :local username ""
 :local password ""
 
@@ -30,7 +31,7 @@ export compact file="$localfilename"
 ### Upload config file to FTP server.
 /tool fetch address=$ftpserver src-path="$localfilename.backup" \
 user=$username mode=ftp password=$password \
-dst-path="/homes/mikrotik/$remotefilename.backup" upload=yes
+dst-path="$ftppath/$remotefilename.backup" upload=yes
 :log info "Config Uploaded Successfully"
 
 ### Upload backup file to FTP server.
